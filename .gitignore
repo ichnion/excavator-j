@@ -1,0 +1,7 @@
+/target
+/Takeout
+.classpath
+.project
+.settings/
+*.db
+takeout*
