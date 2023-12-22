@@ -32,11 +32,29 @@ public class Schema {
 
     public void buildGoogleLocationTables() {
         DbUtils.sqlExecute(con,
+                "CREATE TABLE IF NOT EXISTS google_location_activitysegment ("
+                        + "id               INTEGER PRIMARY KEY,"
+                        + "start_timestamp  TEXT NOT NULL,"
+                        + "end_timestamp    TEXT NOT NULL,"
+                        + "start_lat        FLOAT NOT NULL,"
+                        + "start_lng        FLOAT NOT NULL,"
+                        + "end_lat          FLOAT NOT NULL,"
+                        + "end_lng          FLOAT NOT NULL,"
+                        + "distance         INTEGER,"
+                        + "activity_type    TEXT,"
+                        + "confidence       TEXT,"
+                        + "wkt              TEXT,"
+                        + "UNIQUE(start_timestamp,end_timestamp,"
+                        + "start_lat,start_lng,end_lat,end_lng) "
+                        + ")");
+
+        DbUtils.sqlExecute(con,
                 "CREATE TABLE IF NOT EXISTS google_location_activity ("
                         + "id               INTEGER PRIMARY KEY,"
                         + "timestamp        TEXT,"
                         + "lat              FLOAT NOT NULL,"
-                        + "lng              FLOAT NOT NULL"
+                        + "lng              FLOAT NOT NULL,"
+                        + "UNIQUE(timestamp,lat,lng)"
                         + ")");
 
         DbUtils.sqlExecute(con,
