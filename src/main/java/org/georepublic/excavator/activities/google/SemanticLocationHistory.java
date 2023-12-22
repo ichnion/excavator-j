@@ -73,6 +73,28 @@ public class SemanticLocationHistory {
         String startTimestamp = duration.get("startTimestamp").toString();
         String endTimestamp = duration.get("endTimestamp").toString();
 
+        int distance = 0;
+        String activityType = "";
+        String confidence = "";
+
+        if (activitySegment.containsKey("distance")) {
+            distance = Integer.parseInt(
+                    activitySegment.get("distance").toString());
+        }
+
+        if (activitySegment.containsKey("activityType")) {
+            activityType = activitySegment.get("activityType").toString();
+        }
+
+        if (activitySegment.containsKey("confidence")) {
+            confidence = activitySegment.get("confidence").toString();
+        }
+
+        StringBuffer wkt = new StringBuffer();
+        wkt.append("LINESTRING(").append(sLng).append(" ").append(sLat);
+
+        // String wkt = "LINESTRING(" + sLng + " " + sLat + "," + eLng + " " + eLat + ")";
+
         StringBuffer sb = new StringBuffer();
         sb.append("INSERT INTO google_location_activity ");
         sb.append("(timestamp,lat,lng)  VALUES (");
@@ -99,6 +121,8 @@ public class SemanticLocationHistory {
                 sb.append(wLng).append(")");
 
                 DbUtils.sqlExecute(con, sb.toString());
+
+                wkt.append(",").append(wLng).append(" ").append(wLat);
             }
         }
         sb = new StringBuffer();
@@ -107,6 +131,27 @@ public class SemanticLocationHistory {
         sb.append("'").append(startTimestamp + "," + endTimestamp).append("',");
         sb.append(eLat).append(",");
         sb.append(eLng).append(")");
+
+        DbUtils.sqlExecute(con, sb.toString());
+
+        wkt.append(",").append(eLng).append(" ").append(eLat);
+        wkt.append(")");
+
+        sb = new StringBuffer();
+        sb.append("INSERT INTO google_location_activitysegment ");
+        sb.append("(start_timestamp,end_timestamp,start_lat,start_lng,"
+                + "end_lat,end_lng,distance,activity_type,"
+                + "confidence,wkt)  VALUES (");
+        sb.append("'").append(startTimestamp).append("',");
+        sb.append("'").append(endTimestamp).append("',");
+        sb.append(sLat).append(",");
+        sb.append(sLng).append(",");
+        sb.append(eLat).append(",");
+        sb.append(eLng).append(",");
+        sb.append(distance).append(",");
+        sb.append("'").append(activityType).append("',");
+        sb.append("'").append(confidence).append("',");
+        sb.append("'").append(wkt.toString()).append("')");
 
         DbUtils.sqlExecute(con, sb.toString());
 
