@@ -35,6 +35,7 @@ jobs:
       with:
         artifacts: "target/excavator.jar"
         replacesArtifacts: true
-        tag: "${{ github.run_number }}"        
+        #tag: "${{ github.run_number }}"
+        tag: "Excavator-J"        
         allowUpdates: true
         token: ${{ secrets.GITHUB_TOKEN }}
