@@ -6,6 +6,9 @@ name: Maven Package
 on:
   push:
     branches: [ "main" ]
+    tags: 
+    - "*"
+    
 #  release:
 #    types: [created]
 
