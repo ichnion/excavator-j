@@ -31,18 +31,10 @@ jobs:
     - name: Rename jar-with-dependecies
       run: mv target/excavator-jar-with-dependencies.jar target/excavator.jar
 
-#    - uses: ncipollo/release-action@v1
-#      with:
-#        artifacts: "target/excavator.jar"
-#        replacesArtifacts: true
-#        allowUpdates: true
-#        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: "${{ secrets.YOUR-GITHUB-TOKEN }}"
-          automatic_release_tag: "${{ github.run_number }}"
-          title: "Automated Build ${{ github.run_number }}"
-          prerelease: true
-          files: target/excavator.jar
-
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "target/excavator.jar"
+        replacesArtifacts: true
+        tag: "${{ github.run_number }}"        
+        allowUpdates: true
+        token: ${{ secrets.GITHUB_TOKEN }}
