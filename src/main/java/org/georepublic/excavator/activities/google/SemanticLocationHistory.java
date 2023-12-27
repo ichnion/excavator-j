@@ -59,6 +59,7 @@ public class SemanticLocationHistory {
     }
 
     public void processActivitySegment(JSONObject timeLine) throws Exception {
+
         JSONObject activitySegment = (JSONObject) timeLine.get("activitySegment");
         JSONObject startLocation = (JSONObject) activitySegment.get("startLocation");
         JSONObject endLocation = (JSONObject) activitySegment.get("endLocation");
@@ -167,7 +168,12 @@ public class SemanticLocationHistory {
         double lng = (Long) location.get("longitudeE7") / 10000000.00;
 
         String address = location.get("address").toString();
-        String name = location.get("name").toString();
+
+        String name = "";
+
+        if (location.containsKey("name")) {
+            name = location.get("name").toString();
+        }
 
         String startTimestamp = duration.get("startTimestamp").toString();
         String endTimestamp = duration.get("endTimestamp").toString();

@@ -97,7 +97,7 @@ public class Main {
 
                     String fileName = path.getFileName().toString();
 
-                    if (path.getParent().endsWith("Location History") &&
+                    if (path.getParent().toString().contains(("Location History")) &&
                             fileName.compareTo("Records.json") == 0) {
 
                         System.out.println(" - " + path.toString());
