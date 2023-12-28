@@ -46,6 +46,11 @@ mvn clean package
 target/excavator-jar-with-dependencies.jar
 ```
 
+#### Wiki
+
+* [Viewing Location Points in QGIS](https://github.com/ichnion/excavator-j/wiki/Location-History-Points)
+
+* [Viewing Location Activity Segments in QGIS](https://github.com/ichnion/excavator-j/wiki/Location-History-Activity-Segments)
 
 
 
