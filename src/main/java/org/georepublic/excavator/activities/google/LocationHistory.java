@@ -78,7 +78,7 @@ public class LocationHistory {
 
                     sb.append("values(");
                     sb.append("'").append(activityStr).append("',");
-                    sb.append("'").append(location.get("timestamp")).append("',");
+                    sb.append("datetime('").append(location.get("timestamp")).append("'),");
                     sb.append(location.get("accuracy")).append(",");
                     sb.append(location.get("verticalAccuracy")).append(",");
                     sb.append(location.get("altitude")).append(",");

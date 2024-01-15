@@ -98,8 +98,9 @@ public class SemanticLocationHistory {
 
         StringBuffer sb = new StringBuffer();
         sb.append("INSERT INTO google_location_activity ");
-        sb.append("(timestamp,lat,lng)  VALUES (");
-        sb.append("'").append(startTimestamp + "," + endTimestamp).append("',");
+        sb.append("(start_timestamp,end_timestamp,lat,lng)  VALUES (");
+        sb.append("'").append(startTimestamp).append("',");
+        sb.append("'").append(endTimestamp).append("',");
         sb.append(sLat).append(",");
         sb.append(sLng).append(")");
 
@@ -116,8 +117,9 @@ public class SemanticLocationHistory {
 
                 sb = new StringBuffer();
                 sb.append("INSERT INTO google_location_activity ");
-                sb.append("(timestamp,lat,lng)  VALUES (");
-                sb.append("'").append(startTimestamp + "," + endTimestamp).append("',");
+                sb.append("(start_timestamp,end_timestamp,lat,lng)  VALUES (");
+                sb.append("'").append(startTimestamp).append("',");
+                sb.append("'").append(endTimestamp).append("',");
                 sb.append(wLat).append(",");
                 sb.append(wLng).append(")");
 
@@ -128,8 +130,9 @@ public class SemanticLocationHistory {
         }
         sb = new StringBuffer();
         sb.append("INSERT INTO google_location_activity ");
-        sb.append("(timestamp,lat,lng)  VALUES (");
-        sb.append("'").append(startTimestamp + "," + endTimestamp).append("',");
+        sb.append("(start_timestamp,end_timestamp,lat,lng)  VALUES (");
+        sb.append("'").append(startTimestamp).append("',");
+        sb.append("'").append(endTimestamp).append("',");
         sb.append(eLat).append(",");
         sb.append(eLng).append(")");
 

@@ -34,8 +34,8 @@ public class Schema {
         DbUtils.sqlExecute(con,
                 "CREATE TABLE IF NOT EXISTS google_location_activitysegment ("
                         + "id               INTEGER PRIMARY KEY,"
-                        + "start_timestamp  TEXT NOT NULL,"
-                        + "end_timestamp    TEXT NOT NULL,"
+                        + "start_timestamp  TIMESTAMP NOT NULL,"
+                        + "end_timestamp    TIMESTAMP NOT NULL,"
                         + "start_lat        FLOAT NOT NULL,"
                         + "start_lng        FLOAT NOT NULL,"
                         + "end_lat          FLOAT NOT NULL,"
@@ -51,10 +51,11 @@ public class Schema {
         DbUtils.sqlExecute(con,
                 "CREATE TABLE IF NOT EXISTS google_location_activity ("
                         + "id               INTEGER PRIMARY KEY,"
-                        + "timestamp        TEXT,"
+                        + "start_timestamp  TIMESTAMP,"
+                        + "end_timestamp    TIMESTAMP,"
                         + "lat              FLOAT NOT NULL,"
                         + "lng              FLOAT NOT NULL,"
-                        + "UNIQUE(timestamp,lat,lng)"
+                        + "UNIQUE(start_timestamp,end_timestamp,lat,lng)"
                         + ")");
 
         DbUtils.sqlExecute(con,
@@ -64,8 +65,8 @@ public class Schema {
                 + "name             TEXT,"
                 + "lat              FLOAT NOT NULL,"
                 + "lng              FLOAT NOT NULL,"
-                + "start_timestamp  TEXT NOT NULL,"
-                        + "end_timestamp    TEXT NOT NULL,"
+                        + "start_timestamp TIMESTAMP NOT NULL,"
+                        + "end_timestamp   TIMESTAMP NOT NULL,"
                         + "edit_confirmation_status TEXT,"
                 + "location_confidence     INTEGER,"
                 + "place_visit_type        TEXT,"
@@ -83,7 +84,7 @@ public class Schema {
                         + "activity         TEXT,"
                         // + "address TEXT,"
                         // + "place_name TEXT,"
-                        + "timestamp        TEXT NOT NULL,"
+                        + "timestamp        TIMESTAMP NOT NULL,"
                         + "accuracy         INTEGER,"
                         + "verticalaccuracy INTEGER,"
                         + "altitude         INTEGER,"
@@ -100,7 +101,7 @@ public class Schema {
                 + "header    TEXT NOT NULL,"
                 + "title     TEXT NOT NULL,"
                 + "title_url TEXT,"
-                + "time      TEXT NOT NULL,"
+                        + "time      TIMESTAMP NOT NULL,"
                 + "UNIQUE(header,title,time)"
                 + ")");
 
@@ -174,7 +175,7 @@ public class Schema {
                 + "activity          TEXT,"
                 + "start             TEXT,"
                 + "end               TEXT,"
-                + "timestamp         TEXT"
+                        + "timestamp         TIMESTAMP"
                 + ")");
 
     }
