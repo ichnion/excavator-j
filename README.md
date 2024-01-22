@@ -48,9 +48,8 @@ target/excavator-jar-with-dependencies.jar
 
 #### Wiki
 
-* [Viewing Location Points in QGIS](https://github.com/ichnion/excavator-j/wiki/Location-History-Points)
+More Information about Excavator-J can be found in this project's [WIKI](https://github.com/ichnion/excavator-j/wiki)
 
-* [Viewing Location Activity Segments in QGIS](https://github.com/ichnion/excavator-j/wiki/Location-History-Activity-Segments)
 
 
 
