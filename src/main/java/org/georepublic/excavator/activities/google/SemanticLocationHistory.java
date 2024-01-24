@@ -175,7 +175,7 @@ public class SemanticLocationHistory {
         String name = "";
 
         if (location.containsKey("name")) {
-            name = location.get("name").toString();
+            name = location.get("name").toString().replace("'", "");
         }
 
         String startTimestamp = duration.get("startTimestamp").toString();
@@ -208,6 +208,22 @@ public class SemanticLocationHistory {
 
         DbUtils.sqlExecute(con, sb.toString());
 
+        sb = new StringBuffer();
+
+        sb.append("INSERT into google_location_history ");
+        sb.append("(source,address,place_name,timestamp_msec,accuracy,"
+                + "lat,lng) ");
+
+        sb.append("values(");
+        sb.append("'place_visit',");
+        sb.append("'").append(address).append("',");
+        sb.append("'").append(name).append("',");
+        sb.append("strftime('%s','").append(startTimestamp).append("')* 1000,");
+        sb.append(locationConfidence).append(",");
+        sb.append(location.get("latitudeE7")).append("/10000000.0,");
+        sb.append(location.get("longitudeE7")).append("/10000000.0)");
+
+        DbUtils.sqlExecute(con, sb.toString());
     }
 
 }

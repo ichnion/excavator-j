@@ -71,7 +71,7 @@ public class LocationHistory {
 
                     StringBuffer sb = new StringBuffer();
 
-                    sb.append("INSERT into google_location_history ");
+                    sb.append("INSERT into google_location_history_updated ");
                     sb.append("(activity, timestamp,accuracy, "
                             + "verticalaccuracy, altitude, lat, "
                             + "lng, origin,source,platform_type,form_factor) ");
@@ -88,6 +88,25 @@ public class LocationHistory {
                     sb.append("'").append(source).append("',");
                     sb.append("'").append(platformType).append("',");
                     sb.append("'").append(formFactor).append("')");
+
+                    DbUtils.sqlExecute(con, sb.toString());
+
+                    sb = new StringBuffer();
+
+                    sb.append("INSERT into google_location_history ");
+                    sb.append("(source,activity, timestamp_msec,accuracy, "
+                            + "verticalaccuracy, altitude, lat, "
+                            + "lng) ");
+
+                    sb.append("values(");
+                    sb.append("'location_history',");
+                    sb.append("'").append(activityStr).append("',");
+                    sb.append("strftime('%s','").append(location.get("timestamp")).append("')* 1000,");
+                    sb.append(location.get("accuracy")).append(",");
+                    sb.append(location.get("verticalAccuracy")).append(",");
+                    sb.append(location.get("altitude")).append(",");
+                    sb.append(location.get("latitudeE7")).append("/10000000.0,");
+                    sb.append(location.get("longitudeE7")).append("/10000000.0)");
 
                     DbUtils.sqlExecute(con, sb.toString());
                 }

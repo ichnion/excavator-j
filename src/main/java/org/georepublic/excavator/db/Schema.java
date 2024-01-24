@@ -75,7 +75,23 @@ public class Schema {
                 + ")");
 
         DbUtils.sqlExecute(con,
-                "CREATE TABLE IF NOT EXISTS google_location_history ( "
+                "CREATE TABLE IF NOT EXISTS google_location_history ("
+                        + "id               INTEGER PRIMARY KEY,"
+                        + "source           TEXT,"
+                        + "activity         TEXT,"
+                        + "address          TEXT,"
+                        + "place_name       TEXT,"
+                        + "timestamp_msec   BIGINT NOT NULL,"
+                        + "accuracy         INTEGER,"
+                        + "verticalaccuracy INTEGER,"
+                        + "altitude         INTEGER,"
+                        + "lat              FLOAT NOT NULL,"
+                        + "lng              FLOAT NOT NULL,"
+                        + "UNIQUE(timestamp_msec,lat,lng)"
+                        + ")");
+
+        DbUtils.sqlExecute(con,
+                "CREATE TABLE IF NOT EXISTS google_location_history_updated ( "
                         + "id               INTEGER PRIMARY KEY,"
                         + "origin           TEXT,"
                         + "platform_type    TEXT,"
